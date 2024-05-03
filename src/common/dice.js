@@ -44,10 +44,10 @@ class Beyond20BaseRoll {
         const cleaned = formula
             .replace(/(?:\+\s*)+([+-])/g, "$1") // Change + + and + - into + and - respectively
             .replace(/(?:\-\s*\-)+/g, "+") // Change - - into +
-            .replace(/(?:\-\s*\+)+/g, "-") // Change - - into -
+            .replace(/(?:\-\s*\+)+/g, "-") // Change - + into -
             .replace(/\s+/g, " ") // trim double spaces
         if (cleaned != formula) {
-            // Clean it recursively due to order of operations, we may end up with 
+            // Clean it recursively due to order of operations, we may end up with
             // a double operator situation
             return this.cleanupFormula(cleaned);
         }
@@ -253,7 +253,7 @@ class DNDBDice {
         return this.calculateTotal();
     }
     calculateTotal() {
-        
+
         // Accumulate total based on non discarded rolls;
         this._total = this._rolls.reduce((acc, roll) => {
             return acc + (roll.discarded ? 0 : roll.roll);
